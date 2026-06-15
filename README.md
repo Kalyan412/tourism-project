@@ -1,1 +1,1 @@
-# tourism_project
+# tourism-project
