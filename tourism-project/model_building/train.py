@@ -1,3 +1,4 @@
+
 # for data manipulation
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
@@ -22,10 +23,10 @@ mlflow.set_experiment("mlops-training-experiment")
 api = HfApi()
 
 
-Xtrain_path = "hf://datasets/Kalyanac/tourism-project/Xtrain.csv"
-Xtest_path = "hf://datasets/Kalyanac/tourism-project/Xtest.csv"
-ytrain_path = "hf://datasets/Kalyanac/tourism-project/ytrain.csv"
-ytest_path = "hf://datasets/Kalyanac/tourism-project/ytest.csv"
+Xtrain_path = "hf://datasets/praneeth232/machine-failure-prediction/Xtrain.csv"
+Xtest_path = "hf://datasets/praneeth232/machine-failure-prediction/Xtest.csv"
+ytrain_path = "hf://datasets/praneeth232/machine-failure-prediction/ytrain.csv"
+ytest_path = "hf://datasets/praneeth232/machine-failure-prediction/ytest.csv"
 
 Xtrain = pd.read_csv(Xtrain_path)
 Xtest = pd.read_csv(Xtest_path)
@@ -102,7 +103,7 @@ with mlflow.start_run():
     # Store and evaluate the best model
     best_model = grid_search.best_estimator_
 
-    classification_threshold = 0.45
+    classification_threshold = 0.5
 
     y_pred_train_proba = best_model.predict_proba(Xtrain)[:, 1]
     y_pred_train = (y_pred_train_proba >= classification_threshold).astype(int)
@@ -126,7 +127,7 @@ with mlflow.start_run():
     })
 
     # Save the model locally
-    model_path = "best_machine_failure_model_v1.joblib"
+    model_path = "tourism-project_model.joblib"
     joblib.dump(best_model, model_path)
 
     # Log the model artifact
@@ -148,8 +149,8 @@ with mlflow.start_run():
 
     # create_repo("churn-model", repo_type="model", private=False)
     api.upload_file(
-        path_or_fileobj="tourism-project_model_v1.joblib",
-        path_in_repo="tourism-project_model_v1.joblib",
+        path_or_fileobj="tourism-project_model.joblib",
+        path_in_repo="tourism-project_model.joblib",
         repo_id=repo_id,
         repo_type=repo_type,
     )

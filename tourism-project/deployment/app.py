@@ -1,4 +1,4 @@
-# Import necessary libraries
+
 import streamlit as st
 import pandas as pd
 from huggingface_hub import hf_hub_download
@@ -7,7 +7,7 @@ import joblib
 # Download the model from HuggingFace Model Hub
 model_path = hf_hub_download(
     repo_id="Kalyanac/tourism-project",
-    filename="tourism-project-model.joblib",
+    filename="tourism-project_model.joblib",
     repo_type="model"
 )
 
@@ -26,7 +26,7 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Customer Demographics")
+    st.subheader(" Customer Demographics")
 
     Age = st.number_input(
         "Age (years)",
@@ -67,7 +67,7 @@ with col1:
     )
 
     MonthlyIncome = st.number_input(
-        "Monthly Income (₹)",
+        "Monthly Income",
         min_value=1000,
         max_value=100000,
         value=22000,
@@ -205,7 +205,7 @@ if st.button("Predict Purchase Likelihood", type="primary"):
         st.metric("Purchase Probability", f"{prediction_proba:.1%}")
         st.info("**Recommendation:** Prioritize this customer for immediate follow-up.")
     else:
-        st.warning(" **LOW**: This customer is unlikely to purchase the package.")
+        st.warning("**LOW**: This customer is unlikely to purchase the package.")
         st.metric("Purchase Probability", f"{prediction_proba:.1%}")
         st.info("**Recommendation:** Consider nurturing this lead or focusing on higher-priority customers.")
 
