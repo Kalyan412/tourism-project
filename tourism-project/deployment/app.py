@@ -7,8 +7,7 @@ import joblib
 # Download the model from HuggingFace Model Hub
 model_path = hf_hub_download(
     repo_id="Kalyanac/tourism-project",
-    filename="tourism-project_model.joblib",
-    repo_type="model"
+    filename="tourism-project_model.joblib"
 )
 
 # Load the model pipeline
