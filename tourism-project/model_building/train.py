@@ -20,8 +20,7 @@ import mlflow
 mlflow.set_tracking_uri("http://localhost:5000")
 mlflow.set_experiment("mlops-training-experiment")
 
-api = HfApi()
-
+api = HfApi(token=os.getenv("HF_TOKEN"))
 
 Xtrain_path = "hf://datasets/Kalyanac/tourism-project/Xtrain.csv"
 Xtest_path = "hf://datasets/Kalyanac/tourism-project/Xtest.csv"
