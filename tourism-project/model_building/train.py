@@ -135,7 +135,7 @@ with mlflow.start_run():
 
     # Upload to Hugging Face
     repo_id = "Kalyanac/tourism-project"
-    repo_type = "model"
+    repo_type = "space"
 
     # Step 1: Check if the space exists
     try:
